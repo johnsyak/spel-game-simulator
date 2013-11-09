@@ -1,8 +1,12 @@
 package main;
 
+import actions.ActionType;
 import model.Board;
+import model.Deck;
 import model.Player;
-import cards.TreasureCard;
+import model.RoundType;
+import cards.CardBase;
+import cards.treasure.TreasureCard;
 
 public class Runner {
 
@@ -15,21 +19,40 @@ public class Runner {
 	public void runGame() throws Exception {
 		Board board = new Board(5);
 
-		for (int i = 0; i < 5; i++) {
+		// build decks
+		board.decks.add(new Deck(RoundType.MINE));// building and shuffling
+													// handled by constructor
+		log.logString("Built Mine deck");
+
+		while (board.activePlayers().size() > 0) {
+			flipNextCard(board);
+
+			log.printGameState(board, board.allPlayers());
+
+			if (board.activePlayers().size() == 0)
+				break;
+
 			chooseActions(board);
 
-			flipNextCard(board);
+			if (board.activePlayers().size() == 0)
+				break;
 		}
 
 	}
 
 	private void flipNextCard(Board board) {
-		board.addCard(new TreasureCard(5, false, false));
+		CardBase card = board.decks.get(0).drawCard();
+		board.addCard(card);
+
+		board.playersLeave(log);
+
+		log.logFlip(card);
+		card.runEffect(board, board.playersDoing(ActionType.DEEPER), log);
 	}
 
 	private void chooseActions(Board board) throws Exception {
 		for (Player p : board.activePlayers()) {
-			p.choose(log);
+			p.choose(board, log);
 		}
 	}
 

@@ -1,5 +1,5 @@
 package cards;
 
 public enum CardType {
-	TREASURE, ITEM, ENEMY;
+	TREASURE, ITEM, ENEMY, BAT;
 }
