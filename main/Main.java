@@ -6,8 +6,15 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Runner game = new Runner();
+		try {
+			game.runGame();
+		} catch (Exception e) {
 
+			e.printStackTrace();
+		}
+
+		game.printLog();
 	}
 
 }

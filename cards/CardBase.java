@@ -2,24 +2,22 @@ package cards;
 
 import java.util.List;
 
-import strategy.Player;
+import model.Player;
 
 
 
-public class CardBase {
+
+public abstract class CardBase {
 	
-	private int value;
-	private int secondaryValue;
-	private boolean bombable;
-	private boolean ropeable;
-	private CardType type;
+	protected int value;
+	protected int secondaryValue;
+	protected boolean bombable;
+	protected boolean ropeable;
+	protected CardType type;
 	
 	public CardBase() {
-		type = CardType.TREASURE;
 	}
 	
-	public void runEffect(List<Player> players){
-		
-	}
+	public abstract void runEffect(List<Player> players);
 
 }
