@@ -9,27 +9,21 @@ import cards.CardBase;
 import cards.CardType;
 
 public class TreasureCard extends CardBase {
+	protected int value;
 
-	public TreasureCard(int value, boolean bombable, boolean ropeable) {
+	public TreasureCard(int value) {
 		this.value = value;
-		this.bombable = bombable;
-		this.ropeable = ropeable;
 		this.type = CardType.TREASURE;
 		this.name = "" + this.value + " gold";
 	}
 
-	public TreasureCard(int value, boolean bombable, boolean ropeable,
-			int secondaryValue) {
-		this.value = value;
-		this.bombable = bombable;
-		this.ropeable = ropeable;
-		this.secondaryValue = secondaryValue;
-	}
-
 	@Override
-	public void runEffect(Board board, List<Player> players, Log log) {
+	public boolean runEffect(Board board, List<Player> players, Log log) {
+
 		int[] result = board.splitGold(value, players);
 		log.logGoldSplit(result[0], result[1]);
+
+		return false;
 	}
 
 }

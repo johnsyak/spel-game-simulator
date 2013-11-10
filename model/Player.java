@@ -5,7 +5,6 @@ import java.util.List;
 
 import main.Log;
 import strategy.StrategyBase;
-import actions.ActionType;
 
 public class Player {
 

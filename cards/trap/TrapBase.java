@@ -1,4 +1,4 @@
-package cards.enemy;
+package cards.trap;
 
 import java.util.List;
 
@@ -7,11 +7,10 @@ import model.Board;
 import model.Player;
 import cards.CardBase;
 
-public abstract class EnemyBase extends CardBase {
-
+public abstract class TrapBase extends CardBase {
 	protected int numberToKillParty;
 
-	public EnemyBase() {
+	public TrapBase() {
 	}
 
 	@Override

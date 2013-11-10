@@ -1,14 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import strategy.StratList;
-import strategy.ThresholdGold;
-
 import main.Log;
-
-import actions.ActionType;
+import strategy.StratList;
 import cards.CardBase;
 import cards.CardType;
 
@@ -18,6 +15,8 @@ public class Board {
 	private List<Player> players;
 	public int gold;
 	public List<Deck> decks;
+	
+	public int idolValue;
 
 	public Board(int numPlayers) {
 		players = new ArrayList<Player>();
@@ -34,7 +33,7 @@ public class Board {
 
 		flippedCards = new ArrayList<CardBase>();
 		decks = new ArrayList<Deck>();
-
+		idolValue=0;
 	}
 
 	public List<CardBase> cards() {
@@ -112,10 +111,14 @@ public class Board {
 				// TODO: other action cards like specs, rock, etc.
 
 				log.logLeaving(escapee, actionCardsReceived, goldReceived);
+				
+				claimTakeables(escapee, log);
+				idolValue = 0;
 			} else {
 				int[] result = splitGold(gold, leaving);
 				gold = result[1];
 				log.logLeaving(leaving, result[0], result[1]);
+				
 			}
 
 			for (Player p : leaving) {
@@ -125,6 +128,17 @@ public class Board {
 
 		}
 
+	}
+	
+	private void claimTakeables(Player player, Log log){
+		for (CardBase c : flippedCards){
+			if (Arrays.asList(CardType.IDOL).contains(c.type) && c.available){
+				List<Player> p1 = new ArrayList<Player>();
+				p1.add(player);
+				
+				c.runEffect(this, p1, log);
+			}
+		}
 	}
 
 	public List<Player> activePlayers() {

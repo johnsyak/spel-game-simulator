@@ -1,12 +1,11 @@
 package main;
 
-import actions.ActionType;
+import model.ActionType;
 import model.Board;
 import model.Deck;
 import model.Player;
 import model.RoundType;
 import cards.CardBase;
-import cards.treasure.TreasureCard;
 
 public class Runner {
 
@@ -25,7 +24,10 @@ public class Runner {
 		log.logString("Built Mine deck");
 
 		while (board.activePlayers().size() > 0) {
-			flipNextCard(board);
+			boolean skipCard = flipNextCard(board);
+			if (skipCard)
+				continue;
+			runRecurring(board);
 
 			log.printGameState(board, board.allPlayers());
 
@@ -40,14 +42,22 @@ public class Runner {
 
 	}
 
-	private void flipNextCard(Board board) {
+	private void runRecurring(Board board) {
+		for (CardBase c : board.cards()) {
+			if (c.recurring)
+				c.runEffect(board, board.activePlayers(), log);
+		}
+	}
+
+	private boolean flipNextCard(Board board) {
 		CardBase card = board.decks.get(0).drawCard();
 		board.addCard(card);
 
 		board.playersLeave(log);
 
 		log.logFlip(card);
-		card.runEffect(board, board.playersDoing(ActionType.DEEPER), log);
+		return card
+				.runEffect(board, board.playersDoing(ActionType.DEEPER), log);
 	}
 
 	private void chooseActions(Board board) throws Exception {

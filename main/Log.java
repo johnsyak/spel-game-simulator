@@ -3,9 +3,9 @@ package main;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ActionType;
 import model.Board;
 import model.Player;
-import actions.ActionType;
 import cards.CardBase;
 import cards.CardList;
 
@@ -77,6 +77,8 @@ public class Log {
 	public void logFlip(CardBase card) {
 		if (CardList.isEnemy(card))
 			log.add(card.name + " appears");
+		else if (CardList.isTrap(card))
+			log.add(card.name + " is encountered");
 		else
 			log.add(card.name + " is found");
 	}

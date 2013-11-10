@@ -1,5 +1,9 @@
 package cards;
 
 public enum CardType {
-	TREASURE, ITEM, ENEMY, BAT;
+	DEFAULT,
+	
+	TREASURE, ITEM, IDOL, ROPE, BOMB,
+	ENEMY, BAT, CHILL, GHOST, SNAKE, SPIDER,
+	BOULDER, ARROWTRAP;
 }

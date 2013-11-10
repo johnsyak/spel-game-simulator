@@ -1,8 +1,8 @@
 package strategy;
 
+import model.ActionType;
 import model.Board;
 import model.Player;
-import actions.ActionType;
 
 public class CoinToss extends StrategyBase {
 
