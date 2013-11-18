@@ -1,0 +1,72 @@
+Built Mine deck
+a snake appears
+Gold:: BRD:0  | SmartBot  TOT: 0 CUR: 0 | P(Wait)_2  TOT: 0 CUR: 0 | P(Wait)_3  TOT: 0 CUR: 0 | P(1UP)_4  TOT: 0 CUR: 0 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+P(Wait)_2 chose to go deeper
+P(Wait)_3 chose to go deeper
+P(1UP)_4 chose to go deeper
+P(50%)_5 chose to leave
+P(50%)_5 receives 0 gold
+2 gold is found
+SmartBot, P(Wait)_2, P(Wait)_3, P(1UP)_4 received 0 gold. 2 gold is added to the board.
+Gold:: BRD:2  | SmartBot  TOT: 0 CUR: 0 | P(Wait)_2  TOT: 0 CUR: 0 | P(Wait)_3  TOT: 0 CUR: 0 | P(1UP)_4  TOT: 0 CUR: 0 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+P(Wait)_2 chose to go deeper
+P(Wait)_3 chose to go deeper
+P(1UP)_4 chose to go deeper
+an arrow trap is encountered
+Gold:: BRD:2  | SmartBot  TOT: 0 CUR: 0 | P(Wait)_2  TOT: 0 CUR: 0 | P(Wait)_3  TOT: 0 CUR: 0 | P(1UP)_4  TOT: 0 CUR: 0 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+P(Wait)_2 chose to go deeper
+P(Wait)_3 chose to go deeper
+P(1UP)_4 chose to go deeper
+default appears
+13 gold is found
+SmartBot, P(Wait)_2, P(Wait)_3, P(1UP)_4 received 3 gold. 1 gold is added to the board.
+Gold:: BRD:3  | SmartBot  TOT: 0 CUR: 3 | P(Wait)_2  TOT: 0 CUR: 3 | P(Wait)_3  TOT: 0 CUR: 3 | P(1UP)_4  TOT: 0 CUR: 3 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+P(Wait)_2 chose to leave
+P(Wait)_3 chose to leave
+P(1UP)_4 chose to go deeper
+P(Wait)_2, P(Wait)_3,  received1 gold each. 1 gold remains on the board
+a boulder is encountered
+Gold:: BRD:1  | SmartBot  TOT: 0 CUR: 3 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 0 CUR: 3 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+P(1UP)_4 chose to go deeper
+a boulder is encountered
+Gold:: BRD:1  | SmartBot  TOT: 0 CUR: 3 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 0 CUR: 3 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+P(1UP)_4 chose to go deeper
+8 gold is found
+A GEM (worth 8 gold) is stuck in the wall...
+SmartBot, P(1UP)_4 received 4 gold. 0 gold is added to the board.
+Gold:: BRD:1  | SmartBot  TOT: 0 CUR: 7 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 0 CUR: 7 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to throw a bomb
+P(1UP)_4 chose to go deeper
+15 gold is found
+P(1UP)_4 received 15 gold. 0 gold is added to the board.
+SmartBot threw a bomb and got gems worth 8 gold.
+Gold:: BRD:1  | SmartBot  TOT: 0 CUR: 15 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 0 CUR: 22 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+P(1UP)_4 chose to leave
+P(1UP)_4 receives 1 gold
+a snake appears
+Gold:: BRD:0  | SmartBot  TOT: 0 CUR: 15 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 23 CUR: 0 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+1 gold is found
+SmartBot received 1 gold. 0 gold is added to the board.
+Gold:: BRD:0  | SmartBot  TOT: 0 CUR: 16 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 23 CUR: 0 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to go deeper
+6 gold is found
+Some loot (worth 14 gold) is up on a ledge...
+SmartBot received 6 gold. 0 gold is added to the board.
+Gold:: BRD:0  | SmartBot  TOT: 0 CUR: 22 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 23 CUR: 0 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to use a rope
+a bat appears
+SmartBot received 14 gold. 0 gold remains on the ledge(s).
+Gold:: BRD:0  | SmartBot  TOT: 0 CUR: 36 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 23 CUR: 0 | P(50%)_5  TOT: 0 CUR: 0
+SmartBot chose to leave
+SmartBot receives 0 gold
+3 gold is found
+No one received 0 gold. 3 gold is added to the board.
+Gold:: BRD:0  | SmartBot  TOT: 36 CUR: 0 | P(Wait)_2  TOT: 4 CUR: 0 | P(Wait)_3  TOT: 4 CUR: 0 | P(1UP)_4  TOT: 23 CUR: 0 | P(50%)_5  TOT: 0 CUR: 0

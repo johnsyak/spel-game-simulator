@@ -9,7 +9,7 @@ import cards.CardBase;
 import cards.CardType;
 
 public class TreasureCard extends CardBase {
-	protected int value;
+	public int value;
 
 	public TreasureCard(int value) {
 		this.value = value;
@@ -21,7 +21,7 @@ public class TreasureCard extends CardBase {
 	public boolean runEffect(Board board, List<Player> players, Log log) {
 
 		int[] result = board.splitGold(value, players);
-		log.logGoldSplit(result[0], result[1]);
+		log.logGoldSplit(players, result[0], result[1]);
 
 		return false;
 	}

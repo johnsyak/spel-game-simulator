@@ -10,13 +10,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 import cards.CardBase;
+import cards.CardType;
 import cards.enemy.mine.BatCard;
 import cards.enemy.mine.ChillCard;
 import cards.enemy.mine.SnakeCard;
 import cards.enemy.mine.SpiderCard;
 import cards.trap.ArrowTrapCard;
 import cards.trap.BoulderCard;
+import cards.treasure.BombableTreasureCard;
 import cards.treasure.IdolCard;
+import cards.treasure.RopeableTreasureCard;
 import cards.treasure.TreasureCard;
 
 public class Deck {
@@ -47,6 +50,21 @@ public class Deck {
 		return card;
 	}
 
+	public CardBase drawCard(CardType type) {
+		CardBase result = null;
+		for (CardBase c : cards) {
+			if (c.type == type) {
+				result = c;
+				cards.remove(c);
+				break;
+			}
+		}
+		if (result == null)
+			result = new TreasureCard(1);// in case we're running out of cards
+
+		return result;
+	}
+
 	private void build() throws FileNotFoundException {
 		switch (type) {
 		case MINE:
@@ -72,9 +90,9 @@ public class Deck {
 			case "gold":
 				for (int i = 1; i <= dc.numCards; i++) {
 					if (i == 6)// 6 + ropeable
-						cards.add(new TreasureCard(i));
+						cards.add(new RopeableTreasureCard(i));
 					else if (i == 8)// 8 + bombable
-						cards.add(new TreasureCard(i));
+						cards.add(new BombableTreasureCard(i, i));
 					else
 						cards.add(new TreasureCard((i)));
 				}

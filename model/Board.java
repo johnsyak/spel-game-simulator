@@ -8,32 +8,47 @@ import main.Log;
 import strategy.StratList;
 import cards.CardBase;
 import cards.CardType;
+import cards.treasure.BombableTreasureCard;
+import cards.treasure.RopeableTreasureCard;
 
 public class Board {
 
-	private List<CardBase> flippedCards;
+	public List<CardBase> flippedCards;
 	private List<Player> players;
 	public int gold;
 	public List<Deck> decks;
-	
+
 	public int idolValue;
 
 	public Board(int numPlayers) {
 		players = new ArrayList<Player>();
+		boolean has1UP = false;
+
 		for (int i = 0; i < numPlayers; i++) {
 			Player p;
-			if (Math.random()>.5)
+
+			if (i == 0) {
+				p = new Player("SmartBot", StratList.smartBot);
+			} else if (Math.random() > .66) {
 				p = new Player("P(Wait)_" + (i + 1), StratList.waitGold2);
-			else
+			} else if (Math.random() > .33) {
 				p = new Player("P(50%)_" + (i + 1), StratList.coinToss);
-			
+			} else {
+				if (has1UP) {
+					p = new Player("P(50%)_" + (i + 1), StratList.coinToss);
+				} else {
+					p = new Player("P(1UP)_" + (i + 1), StratList.oneUp);
+					has1UP = true;
+				}
+			}
+
 			p.resetForNewRound();
 			players.add(p);
 		}
 
 		flippedCards = new ArrayList<CardBase>();
 		decks = new ArrayList<Deck>();
-		idolValue=0;
+		idolValue = 0;
 	}
 
 	public List<CardBase> cards() {
@@ -49,6 +64,38 @@ public class Board {
 		}
 		if (threshold >= number)
 			result = true;
+		return result;
+	}
+
+	public boolean hasRopeLoot() {
+		boolean result = false;
+		if (this.contains(CardType.ROPE, 1)) {
+			for (CardBase c : flippedCards) {
+				if (c instanceof RopeableTreasureCard) {
+					RopeableTreasureCard rc = (RopeableTreasureCard) c;
+					if (rc.ropeCard.value > 0) {
+						result = true;
+						break;
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	public boolean hasBombLoot() {
+		boolean result = false;
+		if (this.contains(CardType.BOMB, 1)) {
+			for (CardBase c : flippedCards) {
+				if (c instanceof BombableTreasureCard) {
+					BombableTreasureCard bc = (BombableTreasureCard) c;
+					if (bc.available) {
+						result = true;
+						break;
+					}
+				}
+			}
+		}
 		return result;
 	}
 
@@ -111,14 +158,14 @@ public class Board {
 				// TODO: other action cards like specs, rock, etc.
 
 				log.logLeaving(escapee, actionCardsReceived, goldReceived);
-				
+
 				claimTakeables(escapee, log);
 				idolValue = 0;
 			} else {
 				int[] result = splitGold(gold, leaving);
 				gold = result[1];
 				log.logLeaving(leaving, result[0], result[1]);
-				
+
 			}
 
 			for (Player p : leaving) {
@@ -129,13 +176,13 @@ public class Board {
 		}
 
 	}
-	
-	private void claimTakeables(Player player, Log log){
-		for (CardBase c : flippedCards){
-			if (Arrays.asList(CardType.IDOL).contains(c.type) && c.available){
+
+	private void claimTakeables(Player player, Log log) {
+		for (CardBase c : flippedCards) {
+			if (Arrays.asList(CardType.IDOL).contains(c.type) && c.available) {
 				List<Player> p1 = new ArrayList<Player>();
 				p1.add(player);
-				
+
 				c.runEffect(this, p1, log);
 			}
 		}

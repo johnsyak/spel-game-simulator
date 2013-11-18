@@ -10,6 +10,7 @@ public class Player {
 
 	private int totalGold;
 	private int currentGold;
+	private int roundGold;
 	public boolean active;
 	public boolean dead;
 	public String name;
@@ -38,6 +39,7 @@ public class Player {
 
 	public void addGold(int amount) {
 		currentGold += amount;
+		roundGold = currentGold;
 	}
 
 	public void keepGold() {
@@ -57,6 +59,7 @@ public class Player {
 		chosenAction = ActionType.DEEPER;
 		totalGold += currentGold;
 		currentGold = 0;
+		roundGold = 0;
 	}
 
 	public int totGold() {
@@ -65,6 +68,10 @@ public class Player {
 
 	public int currGold() {
 		return currentGold;
+	}
+	
+	public int roundGold(){
+		return roundGold;
 	}
 
 }
