@@ -10,6 +10,7 @@ public class ThresholdGold extends StrategyBase {
 	
 	public ThresholdGold(int amount) {
 		this.amount = amount;
+		this.id = 2;
 	}
 
 	@Override

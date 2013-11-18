@@ -7,13 +7,14 @@ import model.Player;
 public class SmartBot extends StrategyBase {
 
 	public SmartBot() {
+		this.id = 4;
 	}
 
 	@Override
 	public ActionType decide(Board board, Player player) {
-		boolean rand = Math.random()>.5;
-		
-		if (board.hasRopeLoot() ){
+		boolean rand = Math.random() > .5;
+
+		if (board.hasRopeLoot()) {
 			return ActionType.ROPE;
 		} else if (board.hasBombLoot() && (rand)) {
 			return ActionType.BOMB;

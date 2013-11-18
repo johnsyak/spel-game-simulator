@@ -20,26 +20,32 @@ public class Board {
 
 	public int idolValue;
 
-	public Board(int numPlayers) {
+	public Board() {
 		players = new ArrayList<Player>();
 		boolean has1UP = false;
 
-		for (int i = 0; i < numPlayers; i++) {
+		for (int i = 0; i < 4; i++) {
 			Player p;
+			
+			if (i==0)
+				continue;
 
-			if (i == 0) {
+			switch (i) {
+			case 0:
 				p = new Player("SmartBot", StratList.smartBot);
-			} else if (Math.random() > .66) {
-				p = new Player("P(Wait)_" + (i + 1), StratList.waitGold2);
-			} else if (Math.random() > .33) {
-				p = new Player("P(50%)_" + (i + 1), StratList.coinToss);
-			} else {
-				if (has1UP) {
-					p = new Player("P(50%)_" + (i + 1), StratList.coinToss);
-				} else {
-					p = new Player("P(1UP)_" + (i + 1), StratList.oneUp);
-					has1UP = true;
-				}
+				break;
+			case 1:
+				p = new Player("WaitBot2", StratList.waitGold2);
+				break;
+			case 2:
+				p = new Player("50%_Bot", StratList.coinToss);
+				break;
+			case 3:
+				p = new Player("1UP_Bot", StratList.oneUp);
+				break;
+			default:
+				p = new Player("ERROR" + (i + 1), StratList.coinToss);
+				break;
 			}
 
 			p.resetForNewRound();

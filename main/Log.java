@@ -15,68 +15,83 @@ import cards.treasure.RopeableTreasureCard;
 
 public class Log {
 	private List<String> log;
+	public boolean loggingOn;
 
-	public Log() {
-		log = new ArrayList<String>();
+	public Log(boolean on) {
+		this.log = new ArrayList<String>();
+		this.loggingOn = on;
 	}
 
 	public void logString(String entry) {
-		log.add(entry);
+		if (loggingOn) {
+			log.add(entry);
+		}
 	}
 
 	public void logAction(String name, ActionType chosenAction)
 			throws Exception {
-		String chosenStr;
+		if (loggingOn) {
+			String chosenStr;
 
-		switch (chosenAction) {
-		case DEEPER:
-			chosenStr = "to go deeper";
-			break;
-		case LEAVE:
-			chosenStr = "to leave";
-			break;
-		case BOMB:
-			chosenStr = "to throw a bomb";
-			break;
-		case ROPE:
-			chosenStr = "to use a rope";
-			break;
-		default:
-			throw new Exception("LogAction Exception");
+			switch (chosenAction) {
+			case DEEPER:
+				chosenStr = "to go deeper";
+				break;
+			case LEAVE:
+				chosenStr = "to leave";
+				break;
+			case BOMB:
+				chosenStr = "to throw a bomb";
+				break;
+			case ROPE:
+				chosenStr = "to use a rope";
+				break;
+			default:
+				throw new Exception("LogAction Exception");
+			}
+
+			log.add(name + " chose " + chosenStr);
 		}
 
-		log.add(name + " chose " + chosenStr);
 	}
 
 	public void logLeaving(Player player, List<CardBase> cards, int amount) {
-		String itemsString = "";
-		if (cards.size() > 0) {
-			itemsString += " and items: ";
-			for (CardBase c : cards)
-				itemsString += c.name + ",";
+		if (loggingOn) {
+			String itemsString = "";
+			if (cards.size() > 0) {
+				itemsString += " and items: ";
+				for (CardBase c : cards)
+					itemsString += c.name + ",";
+			}
+
+			log.add(player.name + " receives " + amount + " gold" + itemsString);
 		}
 
-		log.add(player.name + " receives " + amount + " gold" + itemsString);
 	}
 
 	public void logLeaving(List<Player> players, int amount, int remaining) {
-		String leavingPlayersNames = "";
-		for (Player p : players)
-			leavingPlayersNames += p.name + ", ";
-		leavingPlayersNames.substring(0, leavingPlayersNames.length() - 1);
-		boolean plural = players.size() > 1;
+		if (loggingOn) {
+			String leavingPlayersNames = "";
+			for (Player p : players)
+				leavingPlayersNames += p.name + ", ";
+			leavingPlayersNames.substring(0, leavingPlayersNames.length() - 1);
+			boolean plural = players.size() > 1;
 
-		log.add(leavingPlayersNames + " received" + amount + " gold"
-				+ ((plural) ? " each" : "") + ". " + remaining
-				+ " gold remains on the board");
+			log.add(leavingPlayersNames + " received" + amount + " gold"
+					+ ((plural) ? " each" : "") + ". " + remaining
+					+ " gold remains on the board");
+		}
+
 	}
 
 	public void logDeath(String victim, String killer) {
-		log.add(victim + " was killed by " + killer);
+		if (loggingOn)
+			log.add(victim + " was killed by " + killer);
 	}
 
 	public void logDeath(Player victim, CardBase killer) {
-		log.add(victim.name + " was killed by " + killer.name);
+		if (loggingOn)
+			log.add(victim.name + " was killed by " + killer.name);
 	}
 
 	public String namesFromPlayerList(List<Player> players) {
@@ -91,37 +106,47 @@ public class Log {
 	}
 
 	public void logGoldSplit(List<Player> players, int perPlayer, int leftOver) {
-		String pNames = namesFromPlayerList(players);
+		if (loggingOn) {
+			String pNames = namesFromPlayerList(players);
 
-		log.add(pNames + " received " + perPlayer + " gold. " + leftOver
-				+ " gold is added to the board.");
+			log.add(pNames + " received " + perPlayer + " gold. " + leftOver
+					+ " gold is added to the board.");
+		}
+
 	}
 
 	public void logRopeSplit(List<Player> players, int perPlayer, int leftOver) {
-		String pNames = namesFromPlayerList(players);
+		if (loggingOn) {
+			String pNames = namesFromPlayerList(players);
 
-		log.add(pNames + " received " + perPlayer + " gold. " + leftOver
-				+ " gold remains on the ledge(s).");
+			log.add(pNames + " received " + perPlayer + " gold. " + leftOver
+					+ " gold remains on the ledge(s).");
+		}
+
 	}
 
 	public void logFlip(CardBase card) {
-		if (CardList.isEnemy(card)) {
-			if (!Arrays.asList("chill").contains(card.name))//don't log a reshuffled card
-				log.add(card.name + " appears");
-		} else if (CardList.isTrap(card))
-			log.add(card.name + " is encountered");
-		else {
-			log.add(card.name + " is found");
+		if (loggingOn) {
+			if (CardList.isEnemy(card)) {
+				if (!Arrays.asList("chill").contains(card.name))// don't log a
+																// reshuffled
+																// card
+					log.add(card.name + " appears");
+			} else if (CardList.isTrap(card))
+				log.add(card.name + " is encountered");
+			else {
+				log.add(card.name + " is found");
 
-			if (card.type == CardType.BOMB)
-				log.add("A GEM (worth "
-						+ ((BombableTreasureCard) card).bombValue
-						+ " gold) is stuck in the wall...");
-			else if (card.type == CardType.ROPE)
-				log.add("Some loot (worth "
-						+ ((RopeableTreasureCard) card).ropeCard.value
-						+ " gold) is up on a ledge...");
+				if (card.type == CardType.BOMB)
+					log.add("A GEM (worth "
+							+ ((BombableTreasureCard) card).bombValue
+							+ " gold) is stuck in the wall...");
+				else if (card.type == CardType.ROPE)
+					log.add("Some loot (worth "
+							+ ((RopeableTreasureCard) card).ropeCard.value
+							+ " gold) is up on a ledge...");
 
+			}
 		}
 
 	}
@@ -131,13 +156,17 @@ public class Log {
 	}
 
 	public void printGameState(Board b, List<Player> players) {
-		String playersGold = "";
-		for (Player p : players) {
-			playersGold += " | " + p.name + " " + ((!p.dead) ? "" : "(DEAD)")
-					+ " TOT: " + p.totGold() + " CUR: " + p.currGold();
+		if (loggingOn) {
+			String playersGold = "";
+			for (Player p : players) {
+				playersGold += " | " + p.name + " "
+						+ ((!p.dead) ? "" : "(DEAD)") + " TOT: " + p.totGold()
+						+ " CUR: " + p.currGold();
+			}
+
+			log.add("Gold:: BRD:" + b.gold + " " + playersGold);
 		}
 
-		log.add("Gold:: BRD:" + b.gold + " " + playersGold);
 	}
 
 }

@@ -7,7 +7,7 @@ import model.Player;
 public class OneUpAndOut extends StrategyBase {
 
 	public OneUpAndOut() {
-		
+		this.id=3;
 	}
 
 	@Override

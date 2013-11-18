@@ -7,6 +7,7 @@ import model.Board;
 import model.Deck;
 import model.Player;
 import model.RoundType;
+import stats.GameResult;
 import cards.CardBase;
 import cards.CardType;
 import cards.treasure.BombableTreasureCard;
@@ -15,14 +16,14 @@ import cards.treasure.TreasureCard;
 
 public class Runner {
 
-	private Log log;
+	public Log log;
 
 	public Runner() {
-		log = new Log();
+		log = new Log(false);
 	}
 
-	public void runGame() throws Exception {
-		Board board = new Board(5);
+	public GameResult runGame() throws Exception {
+		Board board = new Board();
 
 		// build decks
 		board.decks.add(new Deck(RoundType.MINE));// building and shuffling
@@ -49,6 +50,18 @@ public class Runner {
 				break;
 		}
 
+		return new GameResult(getWinner(board), board.flippedCards);
+	}
+
+	private Player getWinner(Board board) {
+		Player winner = null;
+
+		for (Player p : board.allPlayers()) {
+			if (winner == null || (winner.totGold() < p.totGold()))
+				winner = p;
+		}
+
+		return winner;
 	}
 
 	private void bombsAndRopes(Board board) {
@@ -128,10 +141,12 @@ public class Runner {
 
 		board.playersLeave(log);
 
+		boolean skip = card.runEffect(board,
+				board.playersDoing(ActionType.DEEPER), log);
+
 		log.logFlip(card);
 
-		return card
-				.runEffect(board, board.playersDoing(ActionType.DEEPER), log);
+		return skip;
 	}
 
 	private void chooseActions(Board board) throws Exception {

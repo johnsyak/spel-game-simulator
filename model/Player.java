@@ -73,5 +73,9 @@ public class Player {
 	public int roundGold(){
 		return roundGold;
 	}
+	
+	public StrategyBase strategy(){
+		return this.strategy;
+	}
 
 }
