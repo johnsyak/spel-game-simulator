@@ -20,7 +20,6 @@ SmartBot chose to go deeper
 P(Wait)_2 chose to go deeper
 P(Wait)_3 chose to go deeper
 P(1UP)_4 chose to go deeper
-default appears
 13 gold is found
 SmartBot, P(Wait)_2, P(Wait)_3, P(1UP)_4 received 3 gold. 1 gold is added to the board.
 Gold:: BRD:3  | SmartBot  TOT: 0 CUR: 3 | P(Wait)_2  TOT: 0 CUR: 3 | P(Wait)_3  TOT: 0 CUR: 3 | P(1UP)_4  TOT: 0 CUR: 3 | P(50%)_5  TOT: 0 CUR: 0

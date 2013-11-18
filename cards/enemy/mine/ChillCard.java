@@ -12,6 +12,7 @@ public class ChillCard extends EnemyBase {
 
 	public ChillCard() {
 		this.type = CardType.CHILL;
+		this.name = "chill";
 	}
 
 	@Override

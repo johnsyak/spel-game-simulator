@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import model.ActionType;
@@ -104,9 +105,10 @@ public class Log {
 	}
 
 	public void logFlip(CardBase card) {
-		if (CardList.isEnemy(card))
-			log.add(card.name + " appears");
-		else if (CardList.isTrap(card))
+		if (CardList.isEnemy(card)) {
+			if (!Arrays.asList("chill").contains(card.name))//don't log a reshuffled card
+				log.add(card.name + " appears");
+		} else if (CardList.isTrap(card))
 			log.add(card.name + " is encountered");
 		else {
 			log.add(card.name + " is found");
