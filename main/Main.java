@@ -25,5 +25,5 @@ public class Main {
 		else
 			mc.totals();
 	}
-
+//CONSIDER YOURSELF SOOOOOOOOOOOOOoooooooooooooooooooo.................. FORKED.
 }
